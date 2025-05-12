@@ -1,60 +1,71 @@
+// routes/authoRoute.js
+
 const express = require('express');
-const path = require('path');
-const {login,register} = require('../controllers/authController')
-const uploadCustomerStorage = require('../controllers/uploadFileController')
+const path = require('path'); // Vẫn cần path nếu có logic liên quan đến đường dẫn ở đây
 
+// Import controller functions và users (CẦN EXPORT TỪ CONTROLLER)
+const { login, register, users } = require('../controllers/authController'); // Giả sử users được export
 
-// authencation middlewave
-const authenticateToken = require('../middleware/authMiddlewave');
+// Import middleware và controller upload
+const authenticateToken = require('../middleware/authMiddlewave'); // Đảm bảo tên file đúng
+const uploadCustomerStorage = require('../controllers/uploadFileController');
+
 const router = express.Router();
-//route index
-//route toi 
-router.post('/login', login)
-router.post('/register', register)
 
+// --- Auth API Routes ---
+// POST /api/login (do đã gắn prefix /api trong server.js)
+router.post('/login', login);
 
+// POST /api/register
+router.post('/register', register);
 
-router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../views/index.html'));
-});
-router.get('/upload',(req,res)=>{
-    res.sendFile(path.join(__dirname,'../views/upload_file.html'))
-})
-router.get('/login',(req,res)=>{
-    res.sendFile(path.join(__dirname,'../views/login.html'))
-})
-router.get('/register',(req,res)=>{
-    res.sendFile(path.join(__dirname,'../views/register.html'))
-})
+// --- Profile API Route (Protected) ---
+// GET /api/profile
+router.get('/profile', authenticateToken, (req, res) => {
+    // Middleware đã chạy, req.user chứa payload { userId, username }
 
-
-//route uploadfile
-router.post('/upload', uploadCustomerStorage.single('file'),(req,res)=>{
-    if(!req.file){
-        return res.status(400).send('no file uploaded');
-    }
-    res.send(`file upload to: ${req.file.path}`)
-})
-router.post('/uploads',uploadCustomerStorage.array('files',10), (req,res)=>{
-    if(!req.files){
-        return res.status(400).send('no file uploaded');
-    }
-    const filePaths = req.files.map(file => file.path);
-    res.send(`file upload to:` + filePaths)
-})
-
-router.get('/api/profile', authenticateToken, (req, res) => {
-   
+    // Tìm user dựa trên userId từ token payload
+    // Lưu ý: Biến 'users' cần được import hoặc truy cập đúng cách
     const userProfile = users.find(u => u.id === req.user.userId);
+
     if (!userProfile) {
-        return res.status(404).json({ message: 'User not found' });
+        // Nếu user không tìm thấy trong mảng tạm thời (có thể do server restart)
+        // Trả về thông tin từ token là đủ an toàn.
+         console.warn(`User with ID ${req.user.userId} from valid token not found in 'users' array.`);
+         return res.json({
+             userId: req.user.userId,
+             username: req.user.username
+             // Không cần gửi message lỗi ở đây trừ khi thực sự cần thiết
+         });
     }
-    // Chỉ trả về thông tin an toàn
+
+    // Trả về thông tin an toàn (không bao gồm password hash)
     res.json({
         userId: userProfile.id,
         username: userProfile.username
-        // Thêm các thông tin khác nếu có
+        // Thêm các thông tin khác nếu cần (ví dụ: email, ngày tham gia...)
     });
 });
 
-module.exports = router
+
+// --- Upload Routes (Ví dụ - có thể tách ra file riêng) ---
+// POST /api/upload (bảo vệ bằng token)
+router.post('/upload', authenticateToken, uploadCustomerStorage.single('file'),(req,res)=>{
+    if(!req.file){
+        return res.status(400).json({ message: 'No file uploaded' }); // Trả về JSON
+    }
+    // Trả về đường dẫn hoặc thông tin file dưới dạng JSON
+    res.status(201).json({ message: 'File uploaded successfully', filePath: req.file.path });
+})
+
+// POST /api/uploads (bảo vệ bằng token)
+router.post('/uploads', authenticateToken, uploadCustomerStorage.array('files',10), (req,res)=>{
+    if(!req.files || req.files.length === 0){
+        return res.status(400).json({ message: 'No files uploaded' }); // Trả về JSON
+    }
+    const filePaths = req.files.map(file => file.path);
+    // Trả về mảng đường dẫn hoặc thông tin file dưới dạng JSON
+    res.status(201).json({ message: 'Files uploaded successfully', filePaths: filePaths });
+})
+
+module.exports = router;

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ Sơ Của Bạn</title>
+    <link rel="stylesheet" href="/css/style.css"> <style>
+        /* Thêm style cơ bản cho trang profile */
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; padding: 20px; background-color: #f0f2f5; color: #1c1e21; }
+        .profile-container { max-width: 700px; margin: 30px auto; background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        h1 { color: #1c1e21; text-align: center; margin-bottom: 25px; font-size: 28px; }
+        #profile-message { text-align: center; margin-bottom: 20px; padding: 10px; border-radius: 6px; font-weight: 600; }
+        #profile-message:empty { display: none; } /* Ẩn nếu không có nội dung */
+        .message-loading { background-color: #e7f3ff; color: #1877f2; border: 1px solid #bde0ff; }
+        .message-error { background-color: #fde F3F2; color: #fa383e; border: 1px solid #fadbe1; }
+        #profile-user-info { border-top: 1px solid #dddfe2; padding-top: 20px; }
+        #profile-user-info p { margin: 12px 0; font-size: 16px; color: #4b4f56; }
+        #profile-user-info strong { color: #1c1e21; margin-right: 8px; }
+        #logout-button { display: block; width: 150px; margin: 30px auto 0; padding: 10px 20px; background-color: #fa383e; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: 600; transition: background-color 0.2s; }
+        #logout-button:hover { background-color: #e02c32; }
+        /* Thêm style cho header/nav nếu có */
+        header { background-color: #fff; padding: 10px 20px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1000px; margin: 0 auto; }
+        .logo { font-size: 24px; font-weight: bold; color: #1877f2; text-decoration: none; }
+        nav ul { list-style: none; padding: 0; margin: 0; display: flex; }
+        nav ul li { margin-left: 20px; }
+        nav ul li a { text-decoration: none; color: #4b4f56; font-weight: 600; }
+        nav ul li a:hover, nav ul li a.active { color: #1877f2; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">SeaProject</a>
+            <ul>
+                <li><a href="/">Trang Chủ</a></li>
+                <li><a href="/profile" class="active">Hồ Sơ</a></li>
+                <li><button id="logout-button-nav" style="background:none; border:none; color:#4b4f56; font-weight:600; cursor:pointer; font-size: 1em; padding:0; margin-left: 20px;">Đăng xuất</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="profile-container">
+        <h1>Hồ Sơ Của Bạn</h1>
+
+        <div id="profile-message"></div>
+
+        <div id="profile-user-info">
+            <p>Đang tải thông tin...</p>
+        </div>
+
+        </div>
+
+    <script>
+        // Gắn sự kiện cho nút logout trong header (nếu có)
+        document.addEventListener('DOMContentLoaded', () => {
+             const logoutNavButton = document.getElementById('logout-button-nav');
+             if(logoutNavButton && typeof handleLogout === 'function') { // Kiểm tra hàm handleLogout đã tồn tại chưa
+                 logoutNavButton.addEventListener('click', handleLogout);
+             }
+        });
+    </script>
+    <script src="../public/js/script.js" defer></script>
+</body>
+</html>
+
