@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload File Đẹp Mắt</title>
-    <link rel="stylesheet" href="../public/css/style.css"> </head>
+    <link rel="stylesheet" href="/css/style.css"> </head>
 <body>
     <div class="container">
         <h1>Tải File Lên</h1>
 
         <div class="upload-section">
             <h2>Tải Lên Một File</h2>
-            <form action="/upload" method="post" enctype="multipart/form-data" class="upload-form">
+            <form action="/api/upload" method="post" enctype="multipart/form-data" class="upload-form">
                 <label for="singleFile" class="custom-file-upload">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17" fill="currentColor" class="upload-icon"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-15l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.7 1.5v3.5c0 .8.7 1.5 1.5 1.5h16.4c.8 0 1.5-.7 1.5-1.5v-3.5c0-.5-.3-1.2-.7-1.5z"/></svg>
                     <span>Chọn file...</span>
@@ -24,7 +24,7 @@
 
         <div class="upload-section">
             <h2>Tải Lên Nhiều File</h2>
-            <form action="/uploads" method="post" enctype="multipart/form-data" class="upload-form">
+            <form action="/api/uploads" method="post" enctype="multipart/form-data" class="upload-form">
                  <label for="multipleFiles" class="custom-file-upload">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17" fill="currentColor" class="upload-icon"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-15l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.7 1.5v3.5c0 .8.7 1.5 1.5 1.5h16.4c.8 0 1.5-.7 1.5-1.5v-3.5c0-.5-.3-1.2-.7-1.5z"/></svg>
                     <span>Chọn các file...</span>
@@ -55,6 +55,6 @@
             }
         });
     </script>
-    <script src="../public/js/script.js" defer></script>
+    <script src="/js/script.js" defer></script>
 </body>
 </html>
