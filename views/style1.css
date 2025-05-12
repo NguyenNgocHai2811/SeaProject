@@ -1,0 +1,539 @@
+/* Cài đặt chung */
+:root {
+    --primary-color: #0077be; /* Xanh dương đậm */
+    --secondary-color: #00bfa5; /* Xanh ngọc */
+    --text-color: #f0f8ff; /* Alice blue - cho chữ trên nền tối */
+    --dark-text-color: #333; /* Cho chữ trên nền sáng */
+    --wave-color1: rgba(0, 122, 190, 0.7);
+    --wave-color2: rgba(0, 122, 190, 0.5);
+    --wave-color3: rgba(0, 122, 190, 0.3);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    background-color: #001f3f; /* Xanh biển sâu làm nền chính */
+    color: var(--text-color);
+    overflow-x: hidden; /* Ngăn cuộn ngang */
+}
+
+/* Hiệu ứng particles.js nền */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #001f3f; /* Màu nền cho particles nếu cần */
+    z-index: -2; /* Đảm bảo nó ở dưới cùng */
+}
+
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative; /* Cho hiệu ứng sóng */
+    overflow: hidden; /* Để sóng không tràn ra ngoài */
+    background: linear-gradient(to bottom, #003366 0%, #001f3f 100%); /* Nền gradient cho hero */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2); /* Lớp phủ tối nhẹ */
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+}
+
+.main-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 4rem;
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    margin-bottom: 0.5em;
+    animation: fadeInDown 1.5s ease-out;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-bottom: 1.5em;
+    max-width: 600px;
+    animation: fadeInUp 1.5s 0.5s ease-out backwards;
+}
+
+/* Hiệu ứng sóng */
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px; /* Chiều cao sóng */
+    background-size: 1000px 100px; /* Kích thước 1 gợn sóng */
+    opacity: 0.8;
+}
+
+.wave1 {
+    animation: waveAnimate 30s linear infinite;
+    z-index: -1; /* Đảm bảo sóng nằm dưới nội dung nhưng trên nền */
+    opacity: 0.5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 100'%3E%3Cpath d='M0,50 C250,100 350,0 500,50 C650,100 750,0 1000,50 L1000,100 L0,100 Z' fill='%230077BE' fill-opacity='0.3'%3E%3C/path%3E%3C/svg%3E");
+    bottom: 0;
+}
+
+.wave2 {
+    animation: waveAnimate 20s linear infinite reverse;
+    z-index: -1;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 100'%3E%3Cpath d='M0,60 C200,100 300,0 500,60 C700,100 800,0 1000,60 L1000,100 L0,100 Z' fill='%2300BFA5' fill-opacity='0.3'%3E%3C/path%3E%3C/svg%3E");
+    bottom: 10px;
+}
+
+.wave3 {
+    animation: waveAnimate 25s linear infinite;
+    z-index: -1;
+    opacity: 0.3;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 100'%3E%3Cpath d='M0,70 C150,100 350,0 500,70 C650,100 850,0 1000,70 L1000,100 L0,100 Z' fill='%23FFFFFF' fill-opacity='0.2'%3E%3C/path%3E%3C/svg%3E");
+    bottom: 15px;
+}
+
+
+@keyframes waveAnimate {
+    0% { background-position-x: 0; }
+    100% { background-position-x: 1000px; }
+}
+
+/* Content Sections */
+.content-section {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.05); /* Nền nhẹ cho các section */
+    margin: 40px 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.content-section h2 {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 30px;
+    position: relative;
+}
+.content-section h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--primary-color);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+.content-section p {
+    font-size: 1.1rem;
+    color: #cce7ff; /* Màu chữ sáng hơn chút */
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+}
+.ocean-video-gallery {
+    display: flex;
+    justify-content: space-around; /* Hoặc center, space-between tùy ý */
+    flex-wrap: wrap;
+    gap: 25px; /* Khoảng cách giữa các video */
+    margin-top: 40px;
+}
+
+.video-container {
+    flex: 1 1 300px; /* Các video sẽ co giãn, với kích thước cơ bản là 300px */
+    max-width: 380px; /* Giới hạn kích thước tối đa của mỗi video container */
+    background-color: rgba(0, 51, 102, 0.3); /* Nền nhẹ cho mỗi video */
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-container:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.video-responsive-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* Tỷ lệ 16:9 (height / width * 100%) */
+    border-radius: 8px; /* Bo góc cho video wrapper */
+}
+
+.video-responsive-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none; /* Bỏ viền của iframe */
+}
+
+.video-caption {
+    font-size: 0.95rem;
+    color: var(--secondary-color); /* Màu xanh ngọc */
+    text-align: center;
+    margin-top: 12px;
+    font-weight: 500;
+}
+
+/* Responsive cho video gallery */
+@media (max-width: 768px) {
+    .ocean-video-gallery {
+        gap: 20px;
+    }
+    .video-container {
+        flex-basis: 45%; /* 2 video trên một hàng trên tablet */
+        max-width: none; /* Cho phép co giãn đầy đủ hơn */
+    }
+}
+
+@media (max-width: 580px) {
+    .video-container {
+        flex-basis: 100%; /* 1 video trên một hàng trên mobile */
+    }
+}
+
+/* Parallax Section */
+.parallax-section {
+    background-image: url('https://source.unsplash.com/random/1920x1080/?underwater,ocean'); /* Thay bằng ảnh biển đẹp */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 400px;
+    position: relative;
+    color: white;
+    margin: 60px 0; /* Parallax section full width */
+    border-radius: 0;
+}
+
+.parallax-content {
+    background-color: rgba(0, 51, 102, 0.6); /* Lớp phủ để chữ dễ đọc */
+    padding: 40px;
+    border-radius: 8px;
+    display: inline-block; /* Để lớp phủ chỉ bao quanh nội dung */
+    max-width: 70%;
+}
+.parallax-section h2 {
+    color: #fff;
+}
+.parallax-section p {
+    color: #e0f7fa;
+}
+
+
+/* Nút Call to Action */
+.cta-button {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 50px; /* Bo tròn nhiều */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.cta-button:hover {
+    background-color: #008c7a; /* Màu sẫm hơn khi hover */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+/* Cá bơi */
+.ocean-bed {
+    position: relative;
+    height: 200px; /* Chiều cao cho khu vực cá bơi */
+    overflow: hidden; /* Ẩn cá khi bơi ra ngoài */
+    width: 100%;
+    margin-top: 40px;
+}
+
+.fish-container {
+    position: absolute;
+    width: 100px; /* Kích thước cá */
+    height: 50px;
+    animation: swim 15s linear infinite;
+    opacity: 0.8;
+}
+.fish-container2 {
+    animation-name: swim2;
+    animation-duration: 20s;
+    animation-delay: 2s; /* Bắt đầu muộn hơn */
+}
+
+
+.fish {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes swim {
+    0% { transform: translateX(-120px) translateY(20px) scaleX(1); } /* Bắt đầu từ ngoài màn hình bên trái */
+    25% { transform: translateX(calc(25vw - 50px)) translateY(0px) scaleX(1); }
+    48% { transform: translateX(calc(50vw - 50px)) translateY(30px) scaleX(1); } /* Giữa màn hình, đổi hướng */
+    50% { transform: translateX(calc(50vw - 50px)) translateY(30px) scaleX(-1); } /* Đảo chiều cá */
+    75% { transform: translateX(calc(25vw - 50px)) translateY(10px) scaleX(-1); }
+    100% { transform: translateX(-120px) translateY(20px) scaleX(-1); } /* Kết thúc ở ngoài màn hình bên trái */
+}
+
+@keyframes swim2 { /* Cho con cá thứ 2 bơi khác đi */
+    0% { transform: translateX(110vw) translateY(80px) scaleX(-1); } /* Bắt đầu từ ngoài màn hình bên phải */
+    25% { transform: translateX(calc(75vw - 50px)) translateY(100px) scaleX(-1); }
+    48% { transform: translateX(calc(50vw - 50px)) translateY(70px) scaleX(-1); }
+    50% { transform: translateX(calc(50vw - 50px)) translateY(70px) scaleX(1); } /* Đảo chiều */
+    75% { transform: translateX(calc(75vw - 50px)) translateY(90px) scaleX(1); }
+    100% { transform: translateX(110vw) translateY(80px) scaleX(1); }
+}
+
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #001a33; /* Nền tối hơn cho footer */
+    color: #a7d8ff;
+    margin-top: 40px;
+    font-size: 0.9rem;
+}
+
+/* Animations cho tiêu đề */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.8rem;
+    }
+    .subtitle {
+        font-size: 1.2rem;
+    }
+    .content-section h2 {
+        font-size: 2rem;
+    }
+    .content-section p {
+        font-size: 1rem;
+    }
+    .ocean-gallery {
+        justify-content: center; /* Căn giữa các ảnh trên mobile */
+    }
+    .ocean-gallery img {
+        max-width: 90%;
+    }
+    .parallax-content {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 2.2rem;
+    }
+    .subtitle {
+        font-size: 1rem;
+    }
+    .wave {
+        height: 60px;
+        background-size: 600px 60px;
+    }
+}
+
+
+
+
+
+
+
+
+
+/* navigation */
+/* Navigation Bar Styling */
+.ocean-nav {
+    position: fixed; /* Giữ cố định trên cùng */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 31, 63, 0.85); /* Màu xanh biển sâu, hơi trong suốt */
+    backdrop-filter: blur(8px); /* Hiệu ứng mờ nền cho trình duyệt hỗ trợ */
+    -webkit-backdrop-filter: blur(8px);
+    padding: 12px 0;
+    z-index: 1000; /* Đảm bảo nằm trên các phần tử khác */
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.25); /* Đổ bóng nhẹ nhàng */
+    transition: background-color 0.4s ease, padding 0.4s ease;
+    border-bottom: 1px solid rgba(0, 191, 255, 0.2); /* Viền dưới mờ ảo màu deepskyblue */
+}
+
+.ocean-nav.scrolled {
+    background-color: rgba(0, 20, 45, 0.95); /* Đậm hơn khi cuộn */
+    padding: 8px 0;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.35);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between; /* Logo bên trái, menu bên phải */
+    align-items: center;
+    max-width: 1200px; /* Giới hạn chiều rộng nội dung nav */
+    margin: 0 auto; /* Căn giữa */
+    padding: 0 25px;
+}
+
+.logo {
+    font-family: 'Pacifico', cursive;
+    color: var(--secondary-color); /* Màu xanh ngọc */
+    font-size: 1.9rem;
+    text-decoration: none;
+    text-shadow: 0 0 10px rgba(0, 191, 255, 0.7), 0 0 20px rgba(0, 191, 255, 0.5); /* Hiệu ứng ánh sáng */
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+.logo:hover {
+    color: #fff;
+    text-shadow: 0 0 15px #fff, 0 0 25px var(--secondary-color);
+}
+
+.ocean-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.ocean-nav ul li {
+    margin-left: 30px; /* Khoảng cách giữa các mục menu */
+}
+
+.ocean-nav ul li a.nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500; /* Đậm vừa phải */
+    font-size: 1rem;
+    padding: 8px 0; /* Thêm padding cho vùng click */
+    position: relative; /* Cho pseudo-element ::after */
+    transition: color 0.3s ease;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.ocean-nav ul li a.nav-link:hover {
+    color: var(--secondary-color); /* Chuyển màu khi hover */
+}
+
+/* Hiệu ứng gạch chân "san hô" và "ánh sáng" */
+.ocean-nav ul li a.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; /* Nằm ngay dưới chữ */
+    left: 50%; /* Bắt đầu từ giữa */
+    transform: translateX(-50%);
+    width: 0; /* Ban đầu ẩn */
+    height: 3px;
+    background: linear-gradient(90deg, #FF7F50, #FF4500); /* Màu cam san hô, có thể thêm hồng */
+    border-radius: 2px;
+    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Hiệu ứng ease-out-expo */
+    box-shadow: 0 0 10px #FF7F50, 0 0 5px #FF4500; /* Ánh sáng lan tỏa màu san hô */
+}
+
+.ocean-nav ul li a.nav-link:hover::after,
+.ocean-nav ul li a.nav-link.active::after {
+    width: 60%; /* Độ rộng của gạch chân khi active/hover */
+}
+
+/* CSS cho link active (để JS thêm class) */
+.ocean-nav ul li a.nav-link.active {
+    color: #FFD700; /* Màu vàng gold nổi bật khi active */
+    /* text-shadow: 0 0 8px #FFD700; */
+}
+
+
+/* Responsive cho Navigation */
+@media (max-width: 768px) {
+    .logo {
+        font-size: 1.6rem;
+    }
+    .ocean-nav ul {
+        /* Tạm thời cho phép xuống dòng hoặc bạn có thể ẩn bớt/tạo menu hamburger ở đây */
+        /* display: none; */ /* Nếu muốn làm hamburger menu */
+    }
+    .ocean-nav ul li {
+        margin-left: 15px;
+    }
+    .ocean-nav ul li a.nav-link {
+        font-size: 0.9rem;
+    }
+    .nav-container {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container {
+        flex-direction: column; /* Logo và menu xếp chồng lên nhau */
+        padding-bottom: 10px;
+    }
+    .logo {
+        margin-bottom: 10px;
+    }
+    .ocean-nav ul {
+        justify-content: center; /* Căn giữa các mục menu */
+        width: 100%;
+    }
+    .ocean-nav ul li {
+        margin: 0 10px; /* Giảm khoảng cách ngang */
+    }
+}
+
+/* Đảm bảo nav không che mất phần đầu của section khi nhảy tới bằng #id */
+html {
+    scroll-padding-top: 80px; /* Điều chỉnh giá trị này cho bằng hoặc lớn hơn chiều cao của nav */
+}
+
+/* Chỉnh sửa một chút CSS cũ để tương thích với nav mới */
+.hero-section {
+    /* Có thể không cần thay đổi nhiều ở đây, vì nav nằm ngoài */
+    padding-top: 80px; /* Đẩy nội dung hero xuống nếu nav che mất lúc đầu */
+}
+
+
+
+
+
+
+
+
+
+
+
+
