@@ -42,9 +42,19 @@ router.post('/uploads',uploadCustomerStorage.array('files',10), (req,res)=>{
     const filePaths = req.files.map(file => file.path);
     res.send(`file upload to:` + filePaths)
 })
-router.get('/profile',authenticateToken, (req,res)=>{
-    console.log('hello da vao dc roi')
-    res.send('day la file profile')
-})
+
+router.get('/api/profile', authenticateToken, (req, res) => {
+   
+    const userProfile = users.find(u => u.id === req.user.userId);
+    if (!userProfile) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+    // Chỉ trả về thông tin an toàn
+    res.json({
+        userId: userProfile.id,
+        username: userProfile.username
+        // Thêm các thông tin khác nếu có
+    });
+});
 
 module.exports = router
