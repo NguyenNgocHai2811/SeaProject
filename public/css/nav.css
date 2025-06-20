@@ -80,11 +80,7 @@
     width: 60%; /* Độ rộng của gạch chân khi active/hover */
 }
 
-/* CSS cho link active (để JS thêm class) */
-.ocean-nav ul li a.nav-link.active {
-    /* color: #FFD700; Màu vàng gold nổi bật khi active */
-    /* text-shadow: 0 0 8px #FFD700; */
-}
+
 
 
 /* Responsive cho Navigation */
