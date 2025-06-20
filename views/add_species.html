@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thêm Sinh Vật Biển</title>
+  <link rel="stylesheet" href="/css/species.css">
+</head>
+<body>
+  <h1>➕ Thêm Sinh Vật Mới</h1>
+
+  <form id="add-species-form">
+    <input type="text" name="name" placeholder="Tên sinh vật *" required /><br />
+    <input type="text" name="image" placeholder="Link ảnh" /><br />
+    <textarea name="description" placeholder="Mô tả chi tiết"></textarea><br />
+    <input type="text" name="distribution" placeholder="Phân bố địa lý" /><br />
+    <input type="text" name="conservationStatus" placeholder="Trạng thái bảo tồn" /><br />
+    <button type="submit">Gửi</button>
+  </form>
+
+  <p id="message"></p>
+
+  <script>
+    document.getElementById('add-species-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+
+      const data = {
+        name: form.name.value.trim(),
+        image: form.image.value.trim(),
+        description: form.description.value.trim(),
+        distribution: form.distribution.value.trim(),
+        conservationStatus: form.conservationStatus.value.trim(),
+      };
+
+      try {
+        const res = await fetch('/api/species', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const result = await res.json();
+        if (res.ok) {
+          document.getElementById('message').textContent = "✅ Thêm thành công!";
+          form.reset();
+        } else {
+          document.getElementById('message').textContent = "❌ Lỗi: " + (result.error || "Không rõ");
+        }
+      } catch (err) {
+        console.error(err);
+        document.getElementById('message').textContent = "❌ Gửi thất bại.";
+      }
+    });
+  </script>
+</body>
+</html>

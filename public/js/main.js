@@ -1,4 +1,9 @@
 // public/js/script.js (Thêm Log Debug)
+import { handleLogin, handleRegister, fetchUserProfile, handleLogout } from './logic/authHandlers.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Gắn listener như bạn đang làm
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("[DEBUG] DOM loaded. Setting up listeners.");
