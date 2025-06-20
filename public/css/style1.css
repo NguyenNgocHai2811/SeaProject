@@ -483,10 +483,7 @@ footer {
     .logo {
         font-size: 1.6rem;
     }
-    .ocean-nav ul {
-        /* Tạm thời cho phép xuống dòng hoặc bạn có thể ẩn bớt/tạo menu hamburger ở đây */
-        /* display: none; */ /* Nếu muốn làm hamburger menu */
-    }
+    
     .ocean-nav ul li {
         margin-left: 15px;
     }

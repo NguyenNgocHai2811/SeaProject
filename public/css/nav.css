@@ -1,0 +1,122 @@
+
+
+/* navigation */
+/* Navigation Bar Styling */
+.ocean-nav {
+    position: fixed; /* Giữ cố định trên cùng */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 31, 63, 0.85); /* Màu xanh biển sâu, hơi trong suốt */
+    backdrop-filter: blur(8px); /* Hiệu ứng mờ nền cho trình duyệt hỗ trợ */
+    -webkit-backdrop-filter: blur(8px);
+    padding: 12px 0;
+    z-index: 1000; /* Đảm bảo nằm trên các phần tử khác */
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.25); /* Đổ bóng nhẹ nhàng */
+    transition: background-color 0.4s ease, padding 0.4s ease;
+    border-bottom: 1px solid rgba(0, 191, 255, 0.2); /* Viền dưới mờ ảo màu deepskyblue */
+}
+
+.ocean-nav.scrolled {
+    background-color: rgba(0, 20, 45, 0.95); /* Đậm hơn khi cuộn */
+    padding: 8px 0;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.35);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between; /* Logo bên trái, menu bên phải */
+    align-items: center;
+    max-width: 1200px; /* Giới hạn chiều rộng nội dung nav */
+    margin: 0 auto; /* Căn giữa */
+    padding: 0 25px;
+}
+
+.logo {
+    font-family: 'Pacifico', cursive;
+    color: var(--secondary-color); /* Màu xanh ngọc */
+    font-size: 1.9rem;
+    text-decoration: none;
+    text-shadow: 0 0 10px rgba(0, 191, 255, 0.7), 0 0 20px rgba(0, 191, 255, 0.5); /* Hiệu ứng ánh sáng */
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+.logo:hover {
+    color: #fff;
+    text-shadow: 0 0 15px #fff, 0 0 25px var(--secondary-color);
+}
+
+.ocean-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.ocean-nav ul li {
+    margin-left: 30px; /* Khoảng cách giữa các mục menu */
+}
+
+.ocean-nav ul li a.nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500; /* Đậm vừa phải */
+    font-size: 1rem;
+    padding: 8px 0; /* Thêm padding cho vùng click */
+    position: relative; /* Cho pseudo-element ::after */
+    transition: color 0.3s ease;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.ocean-nav ul li a.nav-link:hover {
+    color: var(--secondary-color); /* Chuyển màu khi hover */
+}
+
+/* Hiệu ứng gạch chân "san hô" và "ánh sáng" */
+
+
+.ocean-nav ul li a.nav-link:hover::after,
+.ocean-nav ul li a.nav-link.active::after {
+    width: 60%; /* Độ rộng của gạch chân khi active/hover */
+}
+
+/* CSS cho link active (để JS thêm class) */
+.ocean-nav ul li a.nav-link.active {
+    /* color: #FFD700; Màu vàng gold nổi bật khi active */
+    /* text-shadow: 0 0 8px #FFD700; */
+}
+
+
+/* Responsive cho Navigation */
+@media (max-width: 768px) {
+    .logo {
+        font-size: 1.6rem;
+    }
+    
+    .ocean-nav ul li {
+        margin-left: 15px;
+    }
+    .ocean-nav ul li a.nav-link {
+        font-size: 0.9rem;
+    }
+    .nav-container {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container {
+        flex-direction: column; /* Logo và menu xếp chồng lên nhau */
+        padding-bottom: 10px;
+    }
+    .logo {
+        margin-bottom: 10px;
+    }
+    .ocean-nav ul {
+        justify-content: center; /* Căn giữa các mục menu */
+        width: 100%;
+    }
+    .ocean-nav ul li {
+        margin: 0 10px; /* Giảm khoảng cách ngang */
+    }
+}

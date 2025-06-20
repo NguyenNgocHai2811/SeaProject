@@ -5,6 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Gắn listener như bạn đang làm
 });
 
+
+import { fetchSpecies } from './api/speciesAPI.js';
+import { renderSpeciesList } from './ui/speciesUI.js';
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const data = await fetchSpecies();
+  renderSpeciesList(data);
+});
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log("[DEBUG] DOM loaded. Setting up listeners.");
 

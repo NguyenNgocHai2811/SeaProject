@@ -1,58 +1,155 @@
+/* ==========================================================================
+   PHONG CÁCH CHO TRANG DANH SÁCH SINH VẬT (HÒA HỢP VỚI STYLE1.CSS)
+   ========================================================================== */
+
+/* 1. Kế thừa các biến màu và cài đặt chung từ style1.css
+-----------------------------------------------------------------------------*/
+/* Chúng ta cần định nghĩa lại các biến này để đảm bảo chúng luôn có sẵn. */
+:root {
+    --primary-color: #0077be; /* Xanh dương đậm */
+    --secondary-color: #00bfa5; /* Xanh ngọc */
+    --text-color: #f0f8ff; /* Alice blue - cho chữ trên nền tối */
+    --dark-text-color: #333; /* Cho chữ trên nền sáng */
+}
+
+/* 2. Áp dụng phong cách Body nhất quán
+-----------------------------------------------------------------------------*/
+/* Đảm bảo trang sinh vật có cùng nền, font và màu chữ mặc định. */
 body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #e0f7fa;
-  color: #333;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    background-color: #001f3f; /* Xanh biển sâu làm nền chính */
+    color: var(--text-color);
+    overflow-x: hidden;
 }
 
-header {
-  background-color: #006064;
-  color: white;
-  text-align: center;
-  padding: 20px 0;
+/* 3. Tạo một Section nội dung thống nhất (Giống như .content-section)
+-----------------------------------------------------------------------------*/
+/* Phần này sẽ chứa tiêu đề và lưới các sinh vật, tạo cảm giác quen thuộc. */
+.species-section {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.05);
+    margin: 40px 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-h1 {
-  margin: 0;
+.species-section h2 {
+    font-family: 'Pacifico', cursive; /* Sử dụng font tiêu đề chính */
+    font-size: 2.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 30px;
+    position: relative;
 }
 
-main {
-  padding: 30px;
+/* Hiệu ứng gạch chân cho tiêu đề, tạo sự đồng bộ */
+.species-section h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--primary-color);
+    margin: 15px auto 0;
+    border-radius: 2px;
 }
 
+/* 4. Layout lưới cho các loài sinh vật (Giữ nguyên cấu trúc flexbox của bạn)
+-----------------------------------------------------------------------------*/
 .species-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px; /* Khoảng cách giữa các thẻ */
+    margin-top: 30px;
 }
 
+/* 5. Tinh chỉnh lại thẻ thông tin sinh vật (.species-card)
+-----------------------------------------------------------------------------*/
 .species-card {
-  background: #ffffff;
-  border-radius: 8px;
-  width: 280px;
-  padding: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
+    background-color: rgba(0, 51, 102, 0.6); /* Giữ màu nền đẹp này */
+    border-radius: 15px;
+    padding: 20px;
+    width: 280px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    border: 1px solid rgba(0, 191, 255, 0.2); /* Thêm viền mờ ảo giống thanh nav */
 }
 
 .species-card:hover {
-  transform: scale(1.02);
+    transform: translateY(-8px);
+    box-shadow: 0 8px 18px rgba(0, 191, 255, 0.3); /* Thay shadow màu đen bằng màu xanh cho đẹp hơn */
 }
 
 .species-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 6px;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
 }
 
+/* Tên của loài sinh vật */
 .species-card h3 {
-  margin: 10px 0 5px;
-  color: #006064;
+    font-family: 'Montserrat', sans-serif; /* Thống nhất font */
+    font-weight: 700; /* In đậm để làm nổi bật */
+    margin: 16px 12px 8px;
+    font-size: 1.25rem;
+    color: var(--secondary-color); /* Bây giờ biến này sẽ hoạt động */
+}
+strong{
+    color: rgba(239, 239, 7, 0.747);
+    /* font-size: larger; */
 }
 
+/* Thêm định dạng cho mô tả ngắn nếu có */
 .species-card p {
-  margin: 4px 0;
-  font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-color); /* Sử dụng màu chữ chính */
+    line-height: 1.5;
+      margin: 0 12px 8px;
+
 }
+
+/* hero-section  */
+/* Căn giữa và đưa header chiếm full viewport height */
+.hero-section {
+  display: flex;
+  align-items: center;       /* căn giữa theo chiều dọc */
+  justify-content: center;   /* căn giữa theo chiều ngang */
+  text-align: center;        /* canh text giữa */
+  padding: 80px 50px 20px;        /* chỉ dùng padding để tạo khoảng trên/dưới */
+  background: var(--primary-bg);
+}
+
+
+/* Container nội dung */
+.hero-content {
+  max-width: 800px;         /* giới hạn độ rộng để đọc dễ hơn */
+  margin: 0 auto;
+}
+
+
+
+/* Tiêu đề chính */
+.main-title {
+  font-size: 3.5rem;        /* phóng to chữ */
+  margin: 0 0 1rem;
+  line-height: 1.2;
+  color: var(--primary-color);
+}
+
+/* Phụ đề */
+.subtitle {
+  font-size: 1.5rem;        /* phóng to phụ đề */
+  margin: 0;
+  color: var(--secondary-color);
+}
+
+
+
+
+

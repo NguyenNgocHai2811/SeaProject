@@ -4,17 +4,44 @@
   <meta charset="UTF-8" />
   <title>Danh Sách Sinh Vật Biển</title>
   <link rel="stylesheet" href="/css/species.css" />
-
+  <link rel="stylesheet" href="/css/nav.css">
 </head>
 <body>
-  <header>
-    <h1>🌊 Danh Sách Sinh Vật Biển</h1>
+<div id="nav-placeholder"></div>
+
+
+  <header class="hero-section">
+    <div class="hero-content">
+      <h1 class="main-title"> Các Loài Sinh Vật Biển</h1>
+      <p class="subtitle">Khám phá những sinh vật kỳ diệu sống dưới đại dương sâu thẳm</p>
+    </div>
+    <!-- Hiệu ứng sóng -->
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
   </header>
 
-  <main>
-    <div id="species-container" class="species-grid">
-      <!-- Card các loài sẽ được render tại đây -->
-    </div>
+  <main class="content-section">
+    <h2>📋 Danh Sách</h2>
+    <div id="species-container" class="species-grid"></div>
   </main>
+
+  <footer>
+    © 2025 Bản quyền thuộc về OceanLife. Mọi chi tiết xin liên hệ ocean@example.com
+  </footer>
+
+  <script type="module" src="/js/ui/speciesUI.js"></script>
+  <script>
+  // Load navigation từ fragments/nav.html
+  fetch('/fragments/nav.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('nav-placeholder').innerHTML = html;
+    })
+    .catch(err => {
+      console.error('Không tải được navigation:', err);
+    });
+</script>
+
 </body>
 </html>
