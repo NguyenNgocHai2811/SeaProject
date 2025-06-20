@@ -1,61 +1,41 @@
-// server.js
-require('dotenv').config(); // Nạp biến môi trường từ file .env
+require('dotenv').config(); // Nạp biến môi trường
 
 const express = require('express');
 const path = require('path');
-const apiRouter = require('./routes/authoRoute'); // Router cho các API
-// const authenticateToken = require('./middleware/authMiddlewave'); // Không cần require ở đây nữa nếu chỉ dùng trong apiRouter
+const connectDB = require('./config/db')
+const apiRouter = require('./routes/authoRoute');
+const speciesRoute = require('./routes/SpeciesRoute'); 
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+connectDB()
 
-// Middlewares cơ bản
-app.use(express.json()); // Để parse JSON request bodies
-app.use(express.urlencoded({ extended: true })); // Để parse URL-encoded request bodies
 
-// Phục vụ file tĩnh từ thư mục 'public' (CSS, JS client-side)
+// Middleware cơ bản
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Gắn API router vào prefix /api
-// Tất cả các route trong authoRoute.js sẽ có tiền tố /api
-// Ví dụ: /api/login, /api/register, /api/profile
+// Routes API
 app.use('/api', apiRouter);
+app.use('/api/species', speciesRoute); 
 
-// --- Các Route phục vụ trang HTML tĩnh ---
 
-// Trang chủ
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'index.html'));
-});
+// Routes HTML
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'views', 'index.html')));
+app.get('/login', (req, res) => res.sendFile(path.join(__dirname, 'views', 'login.html')));
+app.get('/register', (req, res) => res.sendFile(path.join(__dirname, 'views', 'register.html')));
+app.get('/uploadFile', (req, res) => res.sendFile(path.join(__dirname, 'views', 'upload_file.html')));
+app.get('/profile', (req, res) => res.sendFile(path.join(__dirname, 'views', 'profile.html')));
 
-// Trang đăng nhập
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'login.html'));
-});
-
-// Trang đăng ký
-app.get('/register', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'register.html'));
-});
-
-// Trang upload file (ví dụ)
-app.get('/uploadFile', (req, res) => {
-     res.sendFile(path.join(__dirname, 'views', 'upload_file.html'));
- });
-
-// Trang Profile (HTML) - KHÔNG cần authenticateToken ở đây
-// Trang HTML sẽ được tải, sau đó script trên trang đó sẽ gọi API /api/profile (đã được bảo vệ)
-app.get('/profile', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'profile.html'));
-});
-
-// Middleware xử lý lỗi cơ bản (đặt cuối cùng)
+// Middleware lỗi
 app.use((err, req, res, next) => {
-    console.error("Unhandled error:", err.stack);
-    res.status(500).send('Something broke on the server!');
+  console.error("Unhandled error:", err.stack);
+  res.status(500).send('Something broke on the server!');
 });
 
-// Khởi chạy server
+// Start server
 app.listen(PORT, () => {
-    console.log(`Server đang chạy tại http://localhost:${PORT}`);
+  console.log(`🚀 Server đang chạy tại http://localhost:${PORT}`);
 });

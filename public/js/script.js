@@ -100,7 +100,7 @@ async function handleLogin(event) {
 
                 // --- TẠM THỜI VÔ HIỆU HÓA CHUYỂN HƯỚNG ---
                 console.log("[DEBUG] >>> REDIRECT DISABLED FOR TESTING. Check console and localStorage.");
-                 window.location.href = '/profile'; // Dòng này đang bị tắt
+                 window.location.href = '/profile'; 
 
             } catch (storageError) {
                 console.error("[DEBUG] >>> ERROR saving to localStorage:", storageError);
