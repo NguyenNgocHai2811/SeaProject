@@ -2,12 +2,14 @@
 
 body {
   margin: 0;
-  background-color: #001f3f;
+  /* background-color: #7f93a7; */
   color: var(--text-color);
   font-family: 'Montserrat', sans-serif;
 }
 
 h1 {
+    position: relative;
+    z-index: 1;
   font-family: 'Pacifico', cursive;
   font-size: 2.5rem;
   text-align: center;
@@ -17,12 +19,14 @@ h1 {
 }
 
 #loginForm {
+  position: relative;
   max-width: 400px;
   margin: 0 auto;
   padding: 30px;
   background-color: rgba(255,255,255,0.05);
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  z-index: 1;
 }
 
 #loginForm label {
@@ -90,4 +94,20 @@ h1 {
     padding: 20px;
     margin: 0 1rem;
   }
+}
+/* Fullscreen background video */
+#bgVideo {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+/* Dark overlay để form nổi bật */
+#videoOverlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 0;
 }

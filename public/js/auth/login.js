@@ -4,7 +4,7 @@ const loginMsg  = document.getElementById('message');
 loginForm.addEventListener('submit', async e => {
   e.preventDefault();
   const data = {
-    email:    loginForm.email.value,
+    username:    loginForm.username.value,
     password: loginForm.password.value,
   };
   try {
@@ -18,7 +18,7 @@ loginForm.addEventListener('submit', async e => {
     loginMsg.className = res.ok ? 'message success' : 'message error';
     if (res.ok && json.token) {
       localStorage.setItem('token', json.token);
-    //  window.location.href = '/profile.html';
+      window.location.href = '/profile';
     }
   } catch (err) {
     loginMsg.textContent = 'Network error';
