@@ -25,3 +25,9 @@ loginForm.addEventListener('submit', async e => {
     loginMsg.className = 'message error';
   }
 });
+function handleLogout() {
+   
+     localStorage.removeItem('authToken');
+     alert('Bạn đã đăng xuất!');
+      window.location.href = '/login';
+}

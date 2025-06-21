@@ -72,6 +72,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Logout handler
   document.getElementById('logoutBtn').addEventListener('click', () => {
     localStorage.removeItem('token');
-    window.location.href = '/login.html';
+    window.location.href = '/login';
   });
 });

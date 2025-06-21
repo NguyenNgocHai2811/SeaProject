@@ -7,16 +7,8 @@
   <link rel="stylesheet" href="/css/profile.css">
 </head>
 <body>
-  <nav class="ocean-nav">
-    <div class="nav-container">
-      <a href="/" class="logo">SeaProject</a>
-      <ul>
-        <li><a href="/login.html" class="nav-link">Login</a></li>
-        <li><a href="/register.html" class="nav-link">Register</a></li>
-      </ul>
-    </div>
-  </nav>
-
+ <!-- thanh nav is here -->
+  <div id="nav-placeholder"></div>
   <div class="profile-container">
     <h1>Your Profile</h1>
     <div class="profile-card">
@@ -31,7 +23,17 @@
       <button id="logoutBtn">Logout</button>
     </div>
   </div>
-
+  <script>
+  // Load navigation từ fragments/nav.html
+  fetch('/fragments/nav.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('nav-placeholder').innerHTML = html;
+    })
+    .catch(err => {
+      console.error('Không tải được navigation:', err);
+    });
+</script>
   <script src="/js/auth/profile.js"></script>
 </body>
 </html>
