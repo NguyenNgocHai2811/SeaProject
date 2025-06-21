@@ -2,7 +2,7 @@
 
 const speciesContainer = document.getElementById('species-container');
 if (speciesContainer) {
-  fetch('/api/species')
+  fetch('/api/species/readAll')
     .then(res => res.json())
     .then(data => {
       data.forEach(item => {

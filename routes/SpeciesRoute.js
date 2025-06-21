@@ -1,8 +1,34 @@
 const express = require('express');
 const router = express.Router();
 const MarineSpecies = require('../model/MarineSpecies');
-
+const {create ,readAll ,readOne ,update, Delete_id } = require('../controllers/speciesController');
 // Create
+router.post('/create',create);
+//read all
+router.get('/readAll',readAll);
+router.get('/readOne/:id', readOne);
+router.put('/update/:id',update);
+router.delete('/delete/:id',Delete_id);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 router.post('/', async (req, res) => {
   try {
     const species = new MarineSpecies(req.body);
@@ -36,5 +62,6 @@ router.delete('/:id', async (req, res) => {
   await MarineSpecies.findByIdAndDelete(req.params.id);
   res.sendStatus(204);
 });
+*/
 
 module.exports = router;

@@ -2,7 +2,7 @@ require('dotenv').config(); // Nạp biến môi trường
 
 const express = require('express');
 const path = require('path');
-const connectDB = require('./config/db')
+ const connectDB = require('./config/db')
 const apiRouter = require('./routes/authoRoute');
 const speciesRoute = require('./routes/SpeciesRoute'); 
 
@@ -17,9 +17,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // Routes API
 app.use('/api', apiRouter);
 app.use('/api/species', speciesRoute); 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 // Routes HTML
