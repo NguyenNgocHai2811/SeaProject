@@ -1,0 +1,149 @@
+[
+  {
+    "name": "Blue Ringed Octopus",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRIIraMoYpoWy-DZs10hqTjmflc104XfnGEGGNw9ofc-lNj8HeAFOa3oWOzFfksbRrUZeNdLuhIj2plKBIeax33bD76h9FF0d9ODmICA",
+    "description": "Một loài bạch tuộc nhỏ với vòng màu xanh dương nổi bật, cực kỳ độc.",
+    "distribution": "Vùng biển nông của Úc và Nhật Bản",
+    "conservationStatus": "Data Deficient"
+  },
+  {
+    "name": "Leafy Seadragon",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRIIraMoYpoWy-DZs10hqTjmflc104XfnGEGGNw9ofc-lNj8HeAFOa3oWOzFfksbRrUZeNdLuhIj2plKBIeax33bD76h9FF0d9ODmICA",
+    "description": "Cá có hình dạng như tảo biển giúp ngụy trang hoàn hảo.",
+    "distribution": "Bờ biển Nam và Tây Australia",
+    "conservationStatus": "Near Threatened"
+  },
+  {
+    "name": "Mantis Shrimp",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs9nFsDWgoF1SVQbfbU5L6bRyItpANWKPGgfsS5QibMNVH4ZVzL-UHHxVBXs-CnrLIIKg_aXLa0O0vZLW3LdazYA",
+    "description": "Tôm bọ ngựa có khả năng tấn công cực nhanh và thị lực phức tạp.",
+    "distribution": "Ấn Độ Dương, Thái Bình Dương",
+    "conservationStatus": "Least Concern"
+  },
+  {
+    "name": "Giant Pacific Octopus",
+    "image": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTXpShgYtMyHq6B-eAIGSdC-zW7M2-96ArB0hkAoKkH1P3hRZq7n99yWpK8XY_BqFQUNb9FK_Gpsmn9C6zRxzTBlXIRa-H5_MVOulAPmg",
+    "description": "Loài bạch tuộc lớn nhất thế giới, thông minh và có thể thay đổi màu sắc.",
+    "distribution": "Thái Bình Dương phía Bắc",
+    "conservationStatus": "Not Evaluated"
+  },
+  {
+    "name": "Weedy Seadragon",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Sketchbook_of_fishes_-_11._Leafy_sea_dragon_-_William_Buelow_Gould%2C_c1832.jpg/1269px-Sketchbook_of_fishes_-_11._Leafy_sea_dragon_-_William_Buelow_Gould%2C_c1832.jpg",
+    "description": "Giống với leafy seadragon nhưng ít lá hơn, màu sắc sặc sỡ.",
+    "distribution": "Biển phía Nam Australia",
+    "conservationStatus": "Near Threatened"
+  },
+  {
+    "name": "Clownfish",
+    "image": "https://images.newscientist.com/wp-content/uploads/2018/08/23130240/by0ndk.jpg?crop=4:3,smart&width=1200&height=900&upscale=true",
+    "description": "Cá hề sống cộng sinh với hải quỳ, nổi tiếng từ phim Finding Nemo.",
+    "distribution": "Ấn Độ Dương, Tây Thái Bình Dương",
+    "conservationStatus": "Least Concern"
+  },
+  {
+    "name": "Cuttlefish",
+    "image": "",
+    "description": "Mực nang có khả năng đổi màu sắc để giao tiếp và ngụy trang.",
+    "distribution": "Các vùng biển nhiệt đới và ôn đới",
+    "conservationStatus": "Not Evaluated"
+  },
+  {
+    "name": "Lionfish",
+    "image": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSPL8dWbfo3CaT321wo8K7YyCvFto28yQbAjhEwGDOJdK3CsY8cAV6iP2HblcdP5SCF8db0K9at11Z5-2dnD7DseA",
+    "description": "Cá sư tử có gai độc, là loài xâm lấn ở Đại Tây Dương.",
+    "distribution": "Ấn Độ Dương, Tây Thái Bình Dương, Đại Tây Dương (xâm lấn)",
+    "conservationStatus": "Least Concern"
+  },
+  {
+    "name": "Napoleon Wrasse",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrIlaaeEEFif-6zGpz0kcIuD1xp5WURrgulw&s",
+    "description": "Cá mó Napoleon lớn, màu sắc sặc sỡ, rất thông minh.",
+    "distribution": "Rạn san hô Ấn Độ - Thái Bình Dương",
+    "conservationStatus": "Endangered"
+  },
+  {
+    "name": "Mandarinfish",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4qOjTtS4u7muqfcdfHnA8q6O5lwspK-YhtA&s",
+    "description": "Cá hoàng đế nhỏ, màu sắc rực rỡ như tranh vẽ.",
+    "distribution": "Tây Thái Bình Dương",
+    "conservationStatus": "Least Concern"
+  },
+  {
+    "name": "Sea Cucumber",
+    "image": "https://www.montereybayaquarium.org/globalassets/mba/images/animals/invertebrates/johnsons-sea-cucumber-mod135.jpg",
+    "description": "Động vật da gai dạng ống sống dưới đáy biển, giúp làm sạch cát biển.",
+    "distribution": "Toàn cầu, đặc biệt vùng biển nhiệt đới",
+    "conservationStatus": "Varies by species"
+  },
+  {
+    "name": "Stonefish",
+    "image": "https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL3NodXR0ZXJzdG9jay01MDU1ODgxMjAuanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjoiMTIwMCJ9fX0=",
+    "description": "Cá đá cực kỳ độc, ngụy trang như đá biển.",
+    "distribution": "Ấn Độ Dương, Thái Bình Dương",
+    "conservationStatus": "Not Evaluated"
+  },
+  {
+    "name": "Ribbon Eel",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3aN7onBRXYM7LDkZ_JlCA0Z7XaWHWoUuLBg&s",
+    "description": "Lươn ruy băng có hình dạng lạ mắt, thay đổi màu sắc theo độ tuổi.",
+    "distribution": "Ấn Độ Dương, Thái Bình Dương",
+    "conservationStatus": "Not Evaluated"
+  },
+  {
+    "name": "Moray Eel",
+    "image": "https://www.seattleaquarium.org/wp-content/uploads/2024/06/Moray-eel-2.jpg",
+    "description": "Lươn biển với hàm răng sắc bén, sống ẩn mình trong đá.",
+    "distribution": "Toàn cầu, vùng rạn san hô",
+    "conservationStatus": "Least Concern"
+  },
+  {
+    "name": "Pufferfish",
+    "image": "https://i.natgeofe.com/k/b7a6ee44-f96f-434a-8606-6ae742f6ab23/pufferfish-inflated-closeup.jpg?wp=1&w=1084.125&h=609",
+    "description": "Cá nóc có thể phồng lên khi bị đe dọa, chứa độc tố mạnh.",
+    "distribution": "Đại Tây Dương, Ấn Độ Dương, Thái Bình Dương",
+    "conservationStatus": "Least Concern"
+  },
+  {
+    "name": "Blobfish",
+    "image": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT4HL0dYXow84GIEX7Zh8OMcaUGVeeufS4nVtT1cPNlF5SI_FtOyOp_J7lsX--x8Y4Gap7nCZZaaVDVDc_NxFaokg",
+    "description": "Cá blob sống ở vùng biển sâu, nổi tiếng với vẻ ngoài 'buồn bã'.",
+    "distribution": "Biển sâu ngoài khơi Australia và Tasmania",
+    "conservationStatus": "Not Evaluated"
+  },
+  {
+    "name": "Sea Pen",
+    "image": "https://dl0.creation.com/fpimages/13219.jpg",
+    "description": "Sinh vật giống cây viết, thực chất là một loài san hô mềm.",
+    "distribution": "Đại dương trên toàn thế giới",
+    "conservationStatus": "Not Evaluated"
+  },
+  {
+    "name": "Banggai Cardinalfish",
+    "image": "https://shop.thebiotagroup.com/cdn/shop/files/Kaudern_s_1200x.jpg?v=1702911876",
+    "description": "Loài cá nhỏ đẹp, dễ nuôi nhưng đang bị đe dọa do khai thác quá mức.",
+    "distribution": "Quần đảo Banggai, Indonesia",
+    "conservationStatus": "Endangered"
+  },
+  {
+    "name": "Flying Gurnard",
+    "image":"https://upload.wikimedia.org/wikipedia/commons/5/5f/Flughahn.jpg",
+    "description": "Cá có vây như cánh giúp 'bay' ngắn trên đáy biển.",
+    "distribution": "Đại Tây Dương, Địa Trung Hải",
+    "conservationStatus": "Not Evaluated"
+  },
+  {
+    "name": "Ocellated Icefish",
+    "image": "https://www.popsci.com/wp-content/uploads/2019/03/18/LBYY6SR3SQW4K5UHKHFKW2BYPQ.jpg?quality=85",
+    "description": "Cá sống ở Nam Cực, máu không có hemoglobin.",
+    "distribution": "Vùng biển quanh Nam Cực",
+    "conservationStatus": "Least Concern"
+  },
+  {
+    "name": "Batfish",
+    "image": "Batfish",
+    "description": "Cá dơi di chuyển trên đáy biển bằng 'chân' biến đổi từ vây.",
+    "distribution": "Biển sâu vùng nhiệt đới",
+    "conservationStatus": "Not Evaluated"
+  }
+]

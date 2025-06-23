@@ -5,7 +5,7 @@ const authMiddleware = require('../middleware/authMiddlewave');
 const router = express.Router();
 
 router.get('/rooms',                       getRooms);
-router.post('/rooms/:roomId/join',         joinRoom);
-router.get('/rooms/:roomId/messages',      getHistory);
+router.post('/rooms/:roomId/join', authMiddleware,     joinRoom);
+router.get('/rooms/:roomId/messages',authMiddleware,      getHistory);
 
 module.exports = router;
