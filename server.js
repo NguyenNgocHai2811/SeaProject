@@ -32,7 +32,7 @@ app.get('/uploadFile', (req, res) => res.sendFile(path.join(__dirname, 'views', 
 app.get('/profile', (req, res) => res.sendFile(path.join(__dirname, 'views', 'profile.html')));
 app.get('/species', (req, res) => {res.sendFile(path.join(__dirname, 'views', 'species.html'));});
 app.get('/add-species', (req, res) => {res.sendFile(path.join(__dirname, 'views', 'add_species.html'));});
-
+app.get('/chat', (req, res) => {res.sendFile(path.join(__dirname, 'views', 'chat.html'));});
 
 
 // Middleware lỗi
