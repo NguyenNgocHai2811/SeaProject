@@ -39,6 +39,9 @@ app.get('/uploadFile', (req, res) => res.sendFile(path.join(__dirname, 'views', 
 app.get('/profile', (req, res) => res.sendFile(path.join(__dirname, 'views', 'profile.html')));
 app.get('/species', (req, res) => {res.sendFile(path.join(__dirname, 'views', 'species.html'));});
 app.get('/add-species', (req, res) => {res.sendFile(path.join(__dirname, 'views', 'add_species.html'));});
+app.get('/rooms', authMiddleware, (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'rooms.html'));
+});
 // sau cùng, trước error middleware:
 app.get('/chat',authMiddleware ,(req, res) => {res.sendFile(path.join(__dirname, 'views', 'chat.html'));
 });
@@ -64,23 +67,30 @@ io.use((socket, next) => {
   }
 });
 io.on('connection', socket => {
-  socket.on('joinRoom', roomId => {
-    socket.join(roomId);
+  socket.on('joinRoom', async roomId => {
+    const ChatRoom = require('./model/chatRoom');
+    const room = await ChatRoom.findById(roomId);
+    if (room && room.members.includes(socket.user.id)) {
+      socket.join(roomId);
+    }
   });
 
   socket.on('sendMessage', async ({ roomId, text }) => {
-    // Lưu vào DB
+    const ChatRoom = require('./model/chatRoom');
+    const room = await ChatRoom.findById(roomId);
+    if (!room || !room.members.includes(socket.user.id)) {
+      return;
+    }
     const Message = require('./model/Message');
     const msg = await Message.create({
       roomId,
       sender: socket.user.id,
       text
     });
-    // Gửi lại cho tất cả trong room
     io.to(roomId).emit('newMessage', {
       _id: msg._id,
       roomId,
-      sender: { _id: socket.user.id }, 
+      sender: { _id: socket.user.id },
       text: msg.text,
       timestamp: msg.timestamp
     });

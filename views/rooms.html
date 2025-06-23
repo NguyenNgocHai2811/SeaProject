@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Chat Rooms</title>
+  <link rel="stylesheet" href="/css/style1.css">
+  <link rel="stylesheet" href="/css/chat.css">
+</head>
+<body>
+  <nav class="ocean-nav">
+        <div class="nav-container">
+            <a href="/" class="logo">Biển Xanh</a>
+            <ul>
+                <li><a href="/" class="nav-link">Trang Chủ</a></li>
+                <li><a href="/species" class="nav-link">Sinh Vật Biển</a></li>
+                <li><a id="loginLink" href="/login" class="nav-link">Đăng nhập</a></li>
+                <li><a id="registerLink" href="/register" class="nav-link">Đăng ký</a></li>
+                <li><a id="userLink" href="/profile" class="nav-link" style="display:none;"></a></li>
+            </ul>
+        </div>
+  </nav>
+
+  <div class="chat-container" id="rooms"></div>
+
+  <script src="/js/time-theme.js"></script>
+  <script src="/js/auth/index.js" defer></script>
+  <script src="/js/api/rooms.js" defer></script>
+</body>
+</html>

@@ -22,6 +22,17 @@ body {
     overflow-x: hidden; /* Ngăn cuộn ngang */
 }
 
+/* Theme thay đổi theo thời gian trong ngày */
+body.morning {
+    background: linear-gradient(to bottom, #cdeaf7, #87c5f5);
+}
+body.afternoon {
+    background: linear-gradient(to bottom, #a1d8ff, #4fa0e5);
+}
+body.evening {
+    background: linear-gradient(to bottom, #001f3f, #000814);
+}
+
 /* Hiệu ứng particles.js nền */
 #particles-js {
     position: fixed;
