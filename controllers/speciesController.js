@@ -21,11 +21,21 @@ exports.readOne = async (req, res)=>{
     res.json(species);
 }
 exports.update = async (req,res)=>{
-    const updated =  MarineSpecies.findByIdAndUpdate(req.params.id, req.body,{new: true});
+    const updated = await MarineSpecies.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true }
+    );
+    if (!updated) {
+        return res.status(404).json({ message: 'Species not found' });
+    }
     res.json(updated);
 }
 exports.Delete_id = async (req,res)=>{
-    const deleted =  MarineSpecies.findByIdAndDelete(req.params.id);
+    const deleted = await MarineSpecies.findByIdAndDelete(req.params.id);
+    if (!deleted) {
+        return res.status(404).json({ message: 'Species not found' });
+    }
     res.sendStatus(204);
     
 }
