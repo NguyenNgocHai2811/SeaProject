@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chi Tiết Sinh Vật Biển</title>
+  <link rel="stylesheet" href="/css/species.css" />
+  <link rel="stylesheet" href="/css/nav.css">
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<main class="content-section">
+  <div id="species-detail" class="species-section"></div>
+</main>
+
+<script type="module" src="/js/species/speciesDetailUI.js"></script>
+<script>
+  fetch('/fragments/nav.html')
+    .then(res => res.text())
+    .then(html => { document.getElementById('nav-placeholder').innerHTML = html; })
+    .catch(err => console.error('Không tải được navigation:', err));
+</script>
+</body>
+</html>
