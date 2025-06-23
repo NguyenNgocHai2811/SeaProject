@@ -19,7 +19,7 @@ registerForm.addEventListener('submit', async e => {
     if (res.ok) {
       registerForm.reset();
       // redirect to login after showing success message
-      // setTimeout(() => window.location.href = '/login', 2000);
+       setTimeout(() => window.location.href = '/login', 2000);
     }
   } catch (err) {
     messageEl.textContent = 'Network error';

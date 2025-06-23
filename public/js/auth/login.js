@@ -18,7 +18,7 @@ loginForm.addEventListener('submit', async e => {
     loginMsg.className = res.ok ? 'message success' : 'message error';
     if (res.ok && json.token) {
       localStorage.setItem('token', json.token);
-      window.location.href = '/profile';
+      window.location.href = '/';
     }
   } catch (err) {
     loginMsg.textContent = 'Network error';
