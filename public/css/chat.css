@@ -1,0 +1,46 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.5s;
+}
+
+body.morning {
+  background: linear-gradient(#fff8dc, #ffeaa7);
+}
+
+body.afternoon {
+  background: linear-gradient(#c2e9fb, #a1c4fd);
+}
+
+body.night {
+  background: linear-gradient(#0d1b2a, #000);
+  color: #eee;
+}
+
+#chat {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+}
+
+#msgs {
+  list-style: none;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+#msgs li {
+  margin-bottom: 5px;
+}
+
+#typing {
+  font-style: italic;
+  color: #555;
+}
