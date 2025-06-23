@@ -68,6 +68,7 @@ body {
 /* 5. Tinh chỉnh lại thẻ thông tin sinh vật (.species-card)
 -----------------------------------------------------------------------------*/
 .species-card {
+    display: block;
     background-color: rgba(0, 51, 102, 0.6); /* Giữ màu nền đẹp này */
     border-radius: 15px;
     padding: 20px;
