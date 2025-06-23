@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Giới Thiệu</title>
+    <link rel="stylesheet" href="/css/about.css">
+    <link rel="stylesheet" href="/css/nav.css">
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<header class="about-hero">
+    <h1>Về Biển Xanh</h1>
+    <p>Hành trình lan tỏa tình yêu đại dương</p>
+</header>
+<main class="about-content">
+    <p>Biển Xanh là nơi chia sẻ kiến thức và hình ảnh về thế giới biển cả. Chúng tôi mong muốn mang lại cảm hứng bảo tồn đại dương cho cộng đồng.</p>
+    <img src="/images/about-placeholder.jpg" alt="Biển xanh bao la" class="about-img">
+    <p>Nếu bạn có tư liệu hay hình ảnh thú vị, hãy đóng góp để trang ngày càng phong phú hơn.</p>
+</main>
+<footer>© 2025 Biển Xanh</footer>
+<script>
+    fetch('/fragments/nav.html')
+        .then(res => res.text())
+        .then(html => { document.getElementById('nav-placeholder').innerHTML = html; })
+        .catch(err => console.error('Không tải được navigation:', err));
+</script>
+<script src="/js/time-theme.js"></script>
+</body>
+</html>
