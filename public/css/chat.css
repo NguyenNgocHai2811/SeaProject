@@ -1,0 +1,38 @@
+/* background theo thời gian */
+body.morning    { background: url('/images/morning.jpg') no-repeat center/cover; }
+body.afternoon  { background: url('/images/afternoon.jpg') no-repeat center/cover; }
+body.evening    { background: url('/images/evening.jpg') no-repeat center/cover; }
+
+.chat-container {
+  max-width: 600px;
+  margin: 100px auto;
+  background: rgba(255,255,255,0.9);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+#messages {
+  height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.message {
+  margin-bottom: 0.5rem;
+}
+
+#chatForm {
+  display: flex;
+  margin-top: 10px;
+}
+
+#messageInput {
+  flex: 1;
+  padding: 8px;
+  font-size: 1rem;
+}
+
+#chatForm button {
+  padding: 8px 16px;
+}

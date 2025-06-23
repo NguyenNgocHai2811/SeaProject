@@ -1,20 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SeaChat</title>
+  <meta charset="utf-8">
+  <title>Chat Room</title>
+  <link rel="stylesheet" href="/css/style1.css">
   <link rel="stylesheet" href="/css/chat.css">
 </head>
 <body>
-  <div id="chat">
-    <ul id="msgs"></ul>
-    <input id="inpUser" placeholder="Tên bạn" />
-    <input id="inpMsg" placeholder="Gõ tin nhắn..." />
-    <button id="btnSend">Gửi</button>
-    <p id="typing"></p>
+  <nav class="ocean-nav">…</nav>
+
+  <div class="chat-container">
+    <div id="messages"></div>
+    <form id="chatForm">
+      <input id="messageInput" type="text" placeholder="Gõ tin nhắn..." autocomplete="off" />
+      <button type="submit">Gửi</button>
+    </form>
   </div>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="/js/chat-client.js"></script>
+
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="/js/auth/index.js" defer></script>       <!-- chứa logic nav -->
+  <script src="/js/api/chat.js" defer></script>
 </body>
 </html>

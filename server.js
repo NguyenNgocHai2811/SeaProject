@@ -1,15 +1,21 @@
 require('dotenv').config(); // Nạp biến môi trường
-
+const authMiddleware = require('./middleware/authMiddlewave');
 const express = require('express');
 const path = require('path');
  const connectDB = require('./config/db')
 const apiRouter = require('./routes/authoRoute');
 const speciesRoute = require('./routes/SpeciesRoute'); 
+const chatRoutes = require('./routes/chatRoute');
 
+const http    = require('http');            // thêm
+const { Server } = require('socket.io');   // thêm
+const jwt     = require('jsonwebtoken');    
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 connectDB()
+const server = http.createServer(app);
+const io = new Server(server)
 
 
 // Middleware cơ bản
@@ -22,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', apiRouter);
 app.use('/api/species', speciesRoute); 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/api/chat', chatRoutes);
 
 
 // Routes HTML
@@ -32,7 +39,10 @@ app.get('/uploadFile', (req, res) => res.sendFile(path.join(__dirname, 'views', 
 app.get('/profile', (req, res) => res.sendFile(path.join(__dirname, 'views', 'profile.html')));
 app.get('/species', (req, res) => {res.sendFile(path.join(__dirname, 'views', 'species.html'));});
 app.get('/add-species', (req, res) => {res.sendFile(path.join(__dirname, 'views', 'add_species.html'));});
-app.get('/chat', (req, res) => {res.sendFile(path.join(__dirname, 'views', 'chat.html'));});
+// sau cùng, trước error middleware:
+app.get('/chat',authMiddleware ,(req, res) => {res.sendFile(path.join(__dirname, 'views', 'chat.html'));
+});
+
 
 
 // Middleware lỗi
@@ -41,7 +51,41 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke on the server!');
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server đang chạy tại http://localhost:${PORT}`);
+
+// middleware để xác thực JWT qua cookie hoặc header
+io.use((socket, next) => {
+  const token = socket.handshake.auth.token;
+  try {
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    socket.user = payload; 
+    next();
+  } catch {
+    next(new Error('Unauthorized'));
+  }
 });
+io.on('connection', socket => {
+  socket.on('joinRoom', roomId => {
+    socket.join(roomId);
+  });
+
+  socket.on('sendMessage', async ({ roomId, text }) => {
+    // Lưu vào DB
+    const Message = require('./model/Message');
+    const msg = await Message.create({
+      roomId,
+      sender: socket.user.id,
+      text
+    });
+    // Gửi lại cho tất cả trong room
+    io.to(roomId).emit('newMessage', {
+      _id: msg._id,
+      roomId,
+      sender: { _id: socket.user.id }, 
+      text: msg.text,
+      timestamp: msg.timestamp
+    });
+  });
+});
+
+server.listen(3000, () => console.log('Server on 3000'));
+
