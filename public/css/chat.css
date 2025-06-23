@@ -1,7 +1,4 @@
-/* background theo thời gian */
-body.morning    { background: url('/images/morning.jpg') no-repeat center/cover; }
-body.afternoon  { background: url('/images/afternoon.jpg') no-repeat center/cover; }
-body.evening    { background: url('/images/evening.jpg') no-repeat center/cover; }
+/* background sẽ được đặt ở file style1.css */
 
 .chat-container {
   max-width: 600px;

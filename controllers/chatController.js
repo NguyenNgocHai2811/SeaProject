@@ -17,6 +17,12 @@ exports.joinRoom = async (req, res) => {
 };
 
 exports.getHistory = async (req, res) => {
+  const room = await ChatRoom.findById(req.params.roomId);
+  if (!room) return res.status(404).json({ message: 'Room not found' });
+  if (!room.members.includes(req.user.id)) {
+    return res.status(403).json({ message: 'Access denied' });
+  }
+
   const messages = await Message.find({ roomId: req.params.roomId })
     .sort('timestamp')
     .populate('sender', 'username avatarUrl');
