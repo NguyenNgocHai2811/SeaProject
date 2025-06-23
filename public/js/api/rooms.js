@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const id = e.target.dataset.id;
         const joinRes = await fetch(`/api/chat/rooms/${id}/join`, {
           method: 'POST',
-          headers: { 'Authorization': `Bearer ${token}` }
+          
         });
         if (joinRes.ok) {
           window.location.href = `/chat?room=${id}`;

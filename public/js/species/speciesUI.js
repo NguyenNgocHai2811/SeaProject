@@ -6,8 +6,11 @@ if (speciesContainer) {
     .then(res => res.json())
     .then(data => {
       data.forEach(item => {
-        const card = document.createElement('div');
+        const card = document.createElement('a');
         card.className = 'species-card';
+        card.href = `/species/${item._id}`;
+        card.style.textDecoration = 'none';
+        card.style.color = 'inherit';
         card.innerHTML = `
           <img src="${item.image || '/images/default.jpg'}" alt="${item.name}">
           <h3>${item.name}</h3>

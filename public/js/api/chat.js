@@ -13,10 +13,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 1) Join room
   // 1) Join room (phải POST chứ không phải GET)
-const joinRes = await fetch(`/api/chat/rooms/${roomId}/join`, {
-  method: 'POST',                      // ← thêm dòng này
-  headers: { 'Authorization': `Bearer ${token}` }
-});
+ const joinRes = await fetch(`/api/chat/rooms/${roomId}/join`, {
+  method: 'POST',
+   headers: {
+     'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  }
+ });
 if (!joinRes.ok) {
   console.error('Join room failed:', await joinRes.text());
   return alert('Không thể join vào phòng chat');
