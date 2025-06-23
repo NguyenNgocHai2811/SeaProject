@@ -11,10 +11,29 @@ exports.create = async (req , res) =>{
         }
 };
 
-exports.readAll = async (req, res) =>{
-    const list = await MarineSpecies.find();
-    res.json(list);
-}
+exports.readAll = async (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 12;
+
+        const [total, species] = await Promise.all([
+            MarineSpecies.countDocuments(),
+            MarineSpecies.find()
+                .skip((page - 1) * limit)
+                .limit(limit)
+        ]);
+
+        const totalPages = Math.ceil(total / limit);
+
+        res.json({
+            species,
+            page,
+            totalPages
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
 
 exports.readOne = async (req, res)=>{
     const species = await MarineSpecies.findById(req.params.id);
