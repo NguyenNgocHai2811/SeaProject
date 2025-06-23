@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', async () => {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (joinRes.ok) {
-          window.location.href = `/chat?room=${id}`;
+         // pass token via query in case localStorage is cleared on redirect
+          window.location.href = `/chat?room=${id}&token=${encodeURIComponent(token)}`;
         } else {
           alert('Cannot join room');
         }
