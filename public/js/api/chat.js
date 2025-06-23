@@ -62,7 +62,7 @@ if (!joinRes.ok) {
   socket.on('newMessage', msg => {
     const div = document.createElement('div');
     div.className = 'message';
-    div.innerHTML = `<strong>${msg.sender.username || msg.sender._id}</strong>: ${msg.text}`;
+    div.innerHTML = `<strong>${msg.sender.username || msg.sender._id }</strong>: ${msg.text}`;
     messagesEl.appendChild(div);
     messagesEl.scrollTop = messagesEl.scrollHeight;
   });

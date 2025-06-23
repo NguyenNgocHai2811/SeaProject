@@ -88,6 +88,8 @@ io.on('connection', socket => {
     if (!room || !room.members.some(m => m.equals(socket.user.id))) {
       return;
     }
+        // ensure the sender socket is joined to the room before broadcasting
+    socket.join(roomId);
     const Message = require('./model/Message');
     const msg = await Message.create({
       roomId,
