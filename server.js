@@ -37,6 +37,8 @@ app.get('/login', (req, res) => res.sendFile(path.join(__dirname, 'views', 'logi
 app.get('/register', (req, res) => res.sendFile(path.join(__dirname, 'views', 'register.html')));
 app.get('/uploadFile', (req, res) => res.sendFile(path.join(__dirname, 'views', 'upload_file.html')));
 app.get('/profile', (req, res) => res.sendFile(path.join(__dirname, 'views', 'profile.html')));
+app.get('/about', (req, res) =>
+  res.sendFile(path.join(__dirname, 'views', 'about.html')));
 app.get('/species/:id', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'species_detail.html'));
 });

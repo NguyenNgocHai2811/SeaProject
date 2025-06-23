@@ -1,0 +1,50 @@
+:root {
+    --primary-color: #0077be;
+    --secondary-color: #00bfa5;
+    --text-color: #f0f8ff;
+    --dark-text-color: #333;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    background-color: #001f3f;
+    color: var(--text-color);
+}
+
+.about-hero {
+    text-align: center;
+    padding: 100px 20px 60px;
+    background: linear-gradient(to bottom, rgba(0,31,63,0.8), rgba(0,31,63,0.95)), url('/images/about-hero.jpg') center/cover no-repeat;
+}
+
+.about-hero h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-color);
+    text-shadow: 0 0 15px rgba(0,191,255,0.8);
+}
+
+.about-hero p {
+    font-size: 1.2rem;
+}
+
+.about-content {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.about-img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    margin: 20px 0;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+}
