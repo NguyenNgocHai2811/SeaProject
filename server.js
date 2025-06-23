@@ -77,7 +77,7 @@ io.on('connection', socket => {
   socket.on('joinRoom', async roomId => {
     const ChatRoom = require('./model/chatRoom');
     const room = await ChatRoom.findById(roomId);
-    if (room && room.members.includes(socket.user.id)) {
+    if (room && room.members.some(m => m.equals(socket.user.id))) {
       socket.join(roomId);
     }
   });
@@ -85,7 +85,7 @@ io.on('connection', socket => {
   socket.on('sendMessage', async ({ roomId, text }) => {
     const ChatRoom = require('./model/chatRoom');
     const room = await ChatRoom.findById(roomId);
-    if (!room || !room.members.includes(socket.user.id)) {
+    if (!room || !room.members.some(m => m.equals(socket.user.id))) {
       return;
     }
     const Message = require('./model/Message');

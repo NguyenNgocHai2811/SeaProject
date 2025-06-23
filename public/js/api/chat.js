@@ -6,13 +6,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     return alert('Không xác định phòng chat');
   }
 
-    let token = localStorage.getItem('token');
+   let token = localStorage.getItem('token');
   // allow token from query string when redirected from rooms page
   const tokenParam = params.get('token');
   if (!token && tokenParam) {
     token = tokenParam;
     localStorage.setItem('token', token);
   }
+  
   if (!token) {
     return alert('Bạn chưa đăng nhập');
   }
