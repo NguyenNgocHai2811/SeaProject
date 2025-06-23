@@ -2,14 +2,21 @@ require('dotenv').config(); // Nạp biến môi trường
 
 const express = require('express');
 const path = require('path');
- const connectDB = require('./config/db')
+const http = require('http');
+const { Server } = require('socket.io');
+const connectDB = require('./config/db');
 const apiRouter = require('./routes/authoRoute');
-const speciesRoute = require('./routes/SpeciesRoute'); 
+const speciesRoute = require('./routes/SpeciesRoute');
+const chatRoute = require('./routes/chatRoute');
+const chatSocket = require('./sockets/chat');
 
 
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
 const PORT = process.env.PORT || 3000;
-connectDB()
+connectDB();
+chatSocket(io);
 
 
 // Middleware cơ bản
@@ -20,7 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes API
 app.use('/api', apiRouter);
-app.use('/api/species', speciesRoute); 
+app.use('/api/species', speciesRoute);
+app.use('/api/chat', chatRoute);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
@@ -42,6 +50,6 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server đang chạy tại http://localhost:${PORT}`);
 });
