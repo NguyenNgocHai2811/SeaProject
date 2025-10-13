@@ -1,26 +1,13 @@
 {
-  "name": "onthigiuaky",
+  "name": "video-call-app",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Simple video call app using WebRTC, Node.js, and Socket.IO",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "nodemon": "^3.1.10"
+    "start": "node server.js"
   },
   "dependencies": {
-    "bcrypt": "^6.0.0",
-    "dotenv": "^16.5.0",
-    "ejs": "^3.1.10",
-    "express": "^5.1.0",
-    "jsonwebtoken": "^9.0.2",
-    "mongodb": "^6.17.0",
-    "mongoose": "^8.16.0",
-    "multer": "^1.4.5-lts.2",
-    "socket.io": "^4.8.1"
+    "express": "^4.17.1",
+    "socket.io": "^4.0.1"
   }
 }
