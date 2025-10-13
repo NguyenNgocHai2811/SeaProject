@@ -1,110 +1,48 @@
-require('dotenv').config(); // Nạp biến môi trường
-const authMiddleware = require('./middleware/authMiddlewave');
 const express = require('express');
-const path = require('path');
- const connectDB = require('./config/db')
-const apiRouter = require('./routes/authoRoute');
-const speciesRoute = require('./routes/SpeciesRoute'); 
-const chatRoutes = require('./routes/chatRoute');
-
-const http    = require('http');            // thêm
-const { Server } = require('socket.io');   // thêm
-const jwt     = require('jsonwebtoken');    
+const http = require('http');
+const socketIo = require('socket.io');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-connectDB()
 const server = http.createServer(app);
-const io = new Server(server)
+const io = socketIo(server);
 
+// Phục vụ các file tĩnh từ thư mục 'public'
+app.use(express.static('public'));
 
-// Middleware cơ bản
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+io.on('connection', (socket) => {
+  console.log('A user connected:', socket.id);
 
-
-// Routes API
-app.use('/api', apiRouter);
-app.use('/api/species', speciesRoute); 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use('/api/chat', chatRoutes);
-
-
-// Routes HTML
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'views', 'index.html')));
-app.get('/login', (req, res) => res.sendFile(path.join(__dirname, 'views', 'login.html')));
-app.get('/register', (req, res) => res.sendFile(path.join(__dirname, 'views', 'register.html')));
-app.get('/uploadFile', (req, res) => res.sendFile(path.join(__dirname, 'views', 'upload_file.html')));
-app.get('/profile', (req, res) => res.sendFile(path.join(__dirname, 'views', 'profile.html')));
-app.get('/about', (req, res) =>
-  res.sendFile(path.join(__dirname, 'views', 'about.html')));
-app.get('/species/:id', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'species_detail.html'));
-});
-app.get('/species', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'species.html'));
-});
-app.get('/add-species', (req, res) => {res.sendFile(path.join(__dirname, 'views', 'add_species.html'));});
-app.get('/rooms',  (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'rooms.html'));
-});
-// sau cùng, trước error middleware:
-app.get('/chat',(req, res) => {res.sendFile(path.join(__dirname, 'views', 'chat.html'));
-});
-
-
-
-// Middleware lỗi
-app.use((err, req, res, next) => {
-  console.error("Unhandled error:", err.stack);
-  res.status(500).send('Something broke on the server!');
-});
-
-
-// middleware để xác thực JWT qua cookie hoặc header
-io.use((socket, next) => {
-  const token = socket.handshake.auth.token;
-  try {
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
-    socket.user = payload; 
-    next();
-  } catch {
-    next(new Error('Unauthorized'));
-  }
-});
-io.on('connection', socket => {
-  socket.on('joinRoom', async roomId => {
-    const ChatRoom = require('./model/chatRoom');
-    const room = await ChatRoom.findById(roomId);
-    if (room && room.members.some(m => m.equals(socket.user.id))) {
-      socket.join(roomId);
-    }
+  // Tham gia vào một phòng
+  socket.on('join', (room) => {
+    console.log(`Socket ${socket.id} joining room ${room}`);
+    socket.join(room);
+    socket.to(room).emit('user-joined', socket.id);
   });
 
-  socket.on('sendMessage', async ({ roomId, text }) => {
-    const ChatRoom = require('./model/chatRoom');
-    const room = await ChatRoom.findById(roomId);
-    if (!room || !room.members.some(m => m.equals(socket.user.id))) {
-      return;
-    }
-        // ensure the sender socket is joined to the room before broadcasting
-    socket.join(roomId);
-    const Message = require('./model/Message');
-    const msg = await Message.create({
-      roomId,
-      sender: socket.user.id,
-      text
-    });
-    io.to(roomId).emit('newMessage', {
-      _id: msg._id,
-      roomId,
-      sender: { _id: socket.user.id },
-      text: msg.text,
-      timestamp: msg.timestamp
-    });
+  // Chuyển tiếp tin nhắn offer
+  socket.on('offer', (data) => {
+    socket.to(data.room).emit('offer', data.offer);
+  });
+
+  // Chuyển tiếp tin nhắn answer
+  socket.on('answer', (data) => {
+    socket.to(data.room).emit('answer', data.answer);
+  });
+
+  // Chuyển tiếp ICE candidate
+  socket.on('candidate', (data) => {
+    socket.to(data.room).emit('candidate', data.candidate);
+  });
+
+  // Xử lý khi người dùng ngắt kết nối
+  socket.on('disconnect', () => {
+    console.log('User disconnected:', socket.id);
+    // Thông báo cho những người dùng khác trong các phòng mà socket này đã tham gia
+    // (Trong ví dụ đơn giản này, chúng ta không xử lý việc rời phòng cụ thể)
   });
 });
 
-server.listen(PORT, () => console.log(`Server on ${PORT}`));
-
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
