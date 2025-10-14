@@ -5,6 +5,7 @@ const socketIo = require('socket.io');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const path = require('path');
+const authMiddleware = require('./middleware/authMiddlewave');
 
 // Nạp các biến môi trường từ file .env
 dotenv.config();
@@ -35,6 +36,20 @@ app.use('/api/chat', require('./routes/chatRoute'));
 // Trang chủ mặc định - chuyển hướng đến trang đăng nhập
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'login.html'));
+});
+
+// Các trang được bảo vệ, yêu cầu đăng nhập để truy cập
+app.get('/index.html', authMiddleware, (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'index.html'));
+});
+app.get('/about', authMiddleware, (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'about.html'));
+});
+app.get('/species', authMiddleware, (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'species.html'));
+});
+app.get('/rooms', authMiddleware, (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'rooms.html'));
 });
 
 // Logic xử lý Socket.IO cho WebRTC (giữ nguyên)
