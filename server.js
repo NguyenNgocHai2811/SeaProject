@@ -39,16 +39,16 @@ app.get('/', (req, res) => {
 });
 
 // Các trang được bảo vệ, yêu cầu đăng nhập để truy cập
-app.get('/index.html', authMiddleware, (req, res) => {
+app.get('/index.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
-app.get('/about', authMiddleware, (req, res) => {
+app.get('/about', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'about.html'));
 });
-app.get('/species', authMiddleware, (req, res) => {
+app.get('/species', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'species.html'));
 });
-app.get('/rooms', authMiddleware, (req, res) => {
+app.get('/rooms', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'rooms.html'));
 });
 
